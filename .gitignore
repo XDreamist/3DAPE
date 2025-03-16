@@ -1,3 +1,13 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+
+# Other files and directories to ignore
 /M0dl/2020.3.2
 *.opendb
 M0dl.exp
@@ -5,4 +15,3 @@ M0dl.lib
 M0dl.pdb
 /M0dl/.vs
 /M0dl/M0dl
-venv

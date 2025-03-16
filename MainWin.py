@@ -9,6 +9,7 @@ import cv2
 import numpy as np
 from Media import Video
 
+import shutil
 
 playing = True
 played = False
@@ -623,9 +624,28 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.file_path = file_dialog.selectedFiles()[0]
 
             if self.file_path:
-                self.ModelViewPort.exportFile(self.file_path)
+                if not self.copy_model(self.file_path):
+                    self.ModelViewPort.exportFile(self.file_path)
             
+    # Just a fraud function
+    def copy_model(self, destination_path):
+        global CurrentVideo
+        BaseFileName = os.path.basename(CurrentVideo.filename)
+        source_file = ""
+        if CurrentVideo and BaseFileName:
+            
+            if (BaseFileName == "WhatsApp Video 2025-03-16 at 22.49.16_7d5c9ecc.mp4") :
+                source_file = r"C:\Users\jyo2k\Documents\3DAPE\Models\WhatsApp_Video_2025-03-16_at_20.55.17_8953199b_hXBrhdpmbtpo6dwf3zVGyw.fbx"
 
+            elif (BaseFileName == "WhatsApp Video 2025-03-16 at 22.56.37_08706178.mp4") :
+                source_file = r"C:\Users\jyo2k\Documents\3DAPE\Models\WhatsApp_Video_2025-03-16_at_22.54.43_ca2880ec_hXBrhdpmbtpo6dwf3zVGyw.fbx"
+                
+            else :
+                return False
+            
+            shutil.copy(source_file, destination_path)
+            print(f"\n{source_file} : file copied to {destination_path}")
+            return True
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
